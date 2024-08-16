@@ -5,7 +5,7 @@ import numpy as np
 from datetime import date
 
 
-df = pd.read_csv('data\\data_stock_th.csv')
+df = pd.read_csv('..\\data\\data_stock_th.csv')
 
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
