@@ -5,18 +5,19 @@ import numpy as np
 from datetime import date
 
 
-df = pd.read_csv('data_stock_th.csv')
+df = pd.read_csv('data_stock_vn.csv')
 
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
-market = st.sidebar.selectbox(
-    "Select marketsize of the stocks", df['market'].unique()
+market = st.sidebar.number_input(
+    "Market Cap in Million VND", value= (50*25060), placeholder="Type a number..."
 )
+
 sectortoexclude = st.sidebar.multiselect(
     "Select sector to exclude", df['sector'].unique() , default=['Utilities','Energy','Financial Services','Real Estate']
 )
 industrytoexclude = st.sidebar.multiselect(
-    "Select industry to exclude", df['industry'].unique() , default= ['Engineering & Construction']
+    "Select industry to exclude", df['industry'].unique()
 )
 earningrepresentative = st.sidebar.selectbox(
     "Do you prefer EBIT or Operating Income to represent earning?",
@@ -31,7 +32,7 @@ df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabi
 df['MF_EY'] = df[earningrepresentative]/df['enterpriseValue']
 
 
-df = df.loc[df['market'] == market]
+df = df.loc[df['enterpriseValue'] >= (market  *(1000000))]
 for i in sectortoexclude:
     try:
         df = df.loc[df['sector'] != i]
