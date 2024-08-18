@@ -60,9 +60,8 @@ df_bytotalcashpershare = df_bytotalcashpershare.reset_index(drop=True)
 st.header("Ranking based on the Magic Formula")
 st.write(df)
 
-if st.checkbox('Then, ranking by totalcashpershare !!'):
-    st.subheader('Ranking based on the Magic Formula then totalcashpershare')
-    st.write(df_bytotalcashpershare)
+st.markdown("You can then modify the result by sorting the result regarding your own interested attributes")
+st.markdown("It's a must to verify this ranking by reviewing indivual stock and choosing to invest ""by yourself"" ")
 
 ################## main ###########################################################
 
