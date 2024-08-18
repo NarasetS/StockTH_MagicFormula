@@ -32,7 +32,7 @@ df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabi
 df['MF_EY'] = df[earningrepresentative]/df['enterpriseValue']
 
 
-df = df.loc[df['marketCap'] >= market]
+df = df.loc[df['marketCap'] >= (market*(1000000))]
 for i in sectortoexclude:
     try:
         df = df.loc[df['sector'] != i]
