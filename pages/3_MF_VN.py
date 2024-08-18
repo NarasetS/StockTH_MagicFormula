@@ -60,8 +60,9 @@ df_bytotalcashpershare = df_bytotalcashpershare.reset_index(drop=True)
 st.header("Ranking based on the Magic Formula")
 st.write(df)
 
+
 st.markdown("You can then modify the result by sorting the result regarding your own interested attributes")
-st.markdown("It's a must to verify this ranking by reviewing indivual stock and choosing to invest ""by yourself"" ")
+st.markdown("It's a must to verify this ranking by reviewing individual stock and choosing to invest ""by yourself"" ")
 
 ################## main ###########################################################
 
