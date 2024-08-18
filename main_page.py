@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 st.title('TH Stocks vs The Magic formula')
-st.markdown('from "the little book that beats the market by Joel Greenblatt')
+st.header('from "the little book that beats the market by Joel Greenblatt"')
 
 st.markdown("Disclaimer : Here, I mean no suggestion for an investment nor credit.")
 
@@ -13,5 +13,6 @@ st.markdown("Therefore, this site is just me mixing my interests and perks, then
 
 st.markdown(
 ''':rainbow[You can explore page 'MF' and play with all available options (as steep as my knowledge reach so far) and try to rank stocks (Thailand) based on the principles generally provided by the book]''')
-
-
+st.markdown(
+    'Update notes: as of 2024-8-18 >> I update NYSE stocks ranking..'
+)
