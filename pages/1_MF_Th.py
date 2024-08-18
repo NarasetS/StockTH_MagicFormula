@@ -20,7 +20,7 @@ industrytoexclude = st.sidebar.multiselect(
 )
 earningrepresentative = st.sidebar.selectbox(
     "Do you prefer EBIT or Operating Income to represent earning?",
-    ("EBIT", "Operating Income"),
+    ("Operating Income","EBIT"),
 )
 numstocks = st.slider('Number of top ranking stocks', 0, 50, 30)
 st.markdown("Price update : "+str(df['date_pulling'][0]))

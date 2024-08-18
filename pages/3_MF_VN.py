@@ -10,18 +10,18 @@ df = pd.read_csv('data_stock_vn.csv')
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
 market = st.sidebar.number_input(
-    "Market Cap in Million VND", value= (50*25060), placeholder="Type a number..."
+    "Market Cap in Million VND", value= (100*25060), placeholder="Type a number..."
 )
 
 sectortoexclude = st.sidebar.multiselect(
     "Select sector to exclude", df['sector'].unique() , default=['Utilities','Energy','Financial Services','Real Estate']
 )
 industrytoexclude = st.sidebar.multiselect(
-    "Select industry to exclude", df['industry'].unique()
+    "Select industry to exclude", df['industry'].unique() , default= ['Engineering & Construction']
 )
 earningrepresentative = st.sidebar.selectbox(
     "Do you prefer EBIT or Operating Income to represent earning?",
-    ("EBIT", "Operating Income"),
+    ("Operating Income","EBIT"),
 )
 numstocks = st.slider('Number of top ranking stocks', 0, 50, 30)
 st.markdown("Price update : "+str(df['date_pulling'][0]))
