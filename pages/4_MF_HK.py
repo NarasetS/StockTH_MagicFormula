@@ -5,12 +5,12 @@ import numpy as np
 from datetime import date
 
 
-df = pd.read_csv('data_stock_vn.csv')
+df = pd.read_csv('data_stock_hk.csv')
 
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
 market = st.sidebar.number_input(
-    "Market Cap in Million VND", value= (50*25060), placeholder="Type a number..."
+    "Market Cap in Million HKD", value= (50*7.79), placeholder="Type a number..."
 )
 
 sectortoexclude = st.sidebar.multiselect(
