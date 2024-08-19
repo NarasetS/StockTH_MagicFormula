@@ -12,6 +12,8 @@ st.sidebar.markdown("Options")
 market = st.sidebar.selectbox(
     "Select marketsize of the stocks", df['market'].unique()
 )
+
+
 marketcap = st.sidebar.number_input(
     "Enterprise Value in Million THB", value=0, placeholder="Type a number..."
 )
