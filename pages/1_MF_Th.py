@@ -12,6 +12,11 @@ st.sidebar.markdown("Options")
 market = st.sidebar.selectbox(
     "Select marketsize of the stocks", df['market'].unique()
 )
+marketcap = st.sidebar.number_input(
+    "Enterprise Value in Million THB", value=0, placeholder="Type a number..."
+)
+
+
 sectortoexclude = st.sidebar.multiselect(
     "Select sector to exclude", df['sector'].unique() , default=['Utilities','Energy','Financial Services','Real Estate']
 )
@@ -32,6 +37,7 @@ df['MF_EY'] = df[earningrepresentative]/df['enterpriseValue']
 
 
 df = df.loc[df['market'] == market]
+df = df.loc[df['enterpriseValue'] >= (marketcap*(1000000))]
 for i in sectortoexclude:
     try:
         df = df.loc[df['sector'] != i]
