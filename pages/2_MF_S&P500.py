@@ -52,8 +52,18 @@ df = df.sort_values(by=['Ranking_MF'],ascending=False)
 df = df.reset_index(drop=True)
 df = df[:numstocks]
 
-df_bytotalcashpershare = df.sort_values(by=['totalCashPerShare'],ascending=False).copy()
-df_bytotalcashpershare = df_bytotalcashpershare.reset_index(drop=True)
+columns_todrop = [
+    'Total Assets',
+    'enterpriseValue',
+    'Current Liabilities',
+    'Operating Income',
+    'EBIT'
+]
+for i in range(len(columns_todrop)):
+    try:
+       df = df.drop(columns = columns_todrop[i])
+    except:
+        None
 ################## Calculation Part ###################################################
 
 ################## main ###########################################################
