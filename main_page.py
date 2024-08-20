@@ -15,5 +15,5 @@ st.markdown(
 ''':rainbow[You can explore page 'MF' and play with all available options (as steep as my knowledge reach so far) and try to rank stocks (Thailand) based on the principles generally provided by the book]''')
 
 st.markdown(
-    'Update notes: as of 2024-8-18 >> I update US and Vietnam stocks ranking..'
+    'Update notes: as of 2024-8-20 >> I put others ratio that might help benefit decision making and Im working on valuation process'
 )
