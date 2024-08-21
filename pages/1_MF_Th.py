@@ -29,9 +29,10 @@ earningrepresentative = st.sidebar.selectbox(
     "Do you prefer EBIT or Operating Income to represent earning?",
     ("Operating Income","EBIT"),
 )
-numstocks = st.slider('Number of top ranking stocks', 0, 50, 30)
+numstocks = st.slider('Number of top ranking stocks', 0, len(df), 30)
 st.markdown("Price update : " + str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
+
 
 ################## Calculation Part ###################################################
 df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabilities'])
@@ -71,14 +72,27 @@ for i in range(len(columns_todrop)):
        df = df.drop(columns = columns_todrop[i])
     except:
         None
+df_output = df.copy()
+def func_sectortoshow(dataf,listsector):
+    dataf = dataf.loc[dataf['sector'].isin(listsector)]
+    dataf = dataf.reset_index(drop=True)
+    return dataf
+
 ################## Calculation Part ###################################################
 
 ################## main ###########################################################
 st.header("Ranking based on the Magic Formula")
-st.write(df)
+
+sectortoshow = st.multiselect(
+    "Select sector to show", df_output['sector'].unique() , default = df_output['sector'].unique()
+)
+df_output = func_sectortoshow(df_output,sectortoshow)
+st.write(df_output)
 
 
 st.markdown("You can then modify the result by sorting the result regarding your own interested attributes")
 st.markdown("It's a must to verify this ranking by reviewing individual stock and choosing to invest ""by yourself"" ")
 ################## main ###########################################################
+
+
 
