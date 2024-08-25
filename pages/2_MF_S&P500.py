@@ -57,7 +57,9 @@ columns_todrop = [
     'enterpriseValue',
     'Current Liabilities',
     'Operating Income',
-    'EBIT'
+    'EBIT',
+    'fiftyTwoWeekLow',
+    'fiftyTwoWeekHigh'
 ]
 for i in range(len(columns_todrop)):
     try:
