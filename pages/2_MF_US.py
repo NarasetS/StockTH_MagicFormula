@@ -23,7 +23,7 @@ earningrepresentative = st.sidebar.selectbox(
     "Do you prefer EBIT or Operating Income to represent earning?",
     ("Operating Income","EBIT"),
 )
-numstocks = st.slider('Number of top ranking stocks', 0, len(df), 30)
+numstocks = st.slider('Number of top ranking stocks', 0, len(df), 50)
 st.markdown("Price update : "+str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
 
