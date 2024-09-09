@@ -33,8 +33,6 @@ kiwisolver==1.4.5
 lxml==5.2.2
 markdown-it-py==3.0.0
 MarkupSafe==2.1.5
-matplotlib==3.9.1
-matplotlib-inline==0.1.7
 mdurl==0.1.2
 multitasking==0.0.11
 narwhals==1.4.1
