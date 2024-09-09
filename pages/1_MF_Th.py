@@ -15,7 +15,7 @@ market = st.sidebar.selectbox(
 
 
 marketcap = st.sidebar.number_input(
-    "Enterprise Value in Million THB", value=3500, placeholder="Type a number..."
+    "Enterprise Value in Million THB", value=3500 , placeholder="Type a number..."
 )
 
 
