@@ -28,8 +28,9 @@ st.markdown("Price update : "+str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
 
 ################## Calculation Part ###################################################
-df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabilities'])
+# df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabilities'])
 df['MF_EY'] = df[earningrepresentative]/df['enterpriseValue']
+df['MF_ROC'] = df[earningrepresentative]/df['Invested Capital']
 
 
 df = df.loc[df['enterpriseValue'] >= (market*(1000000))]
@@ -59,7 +60,8 @@ columns_todrop = [
     'Operating Income',
     'EBIT',
     'fiftyTwoWeekLow',
-    'fiftyTwoWeekHigh'
+    'fiftyTwoWeekHigh',
+    'Invested Capital'
 ]
 for i in range(len(columns_todrop)):
     try:

@@ -32,7 +32,8 @@ info_attribute_list = [
 # 3rd acquiring information from .quarterly_balance_sheet #
 balancesheet_list = [
     'Total Assets',
-    'Current Liabilities'
+    'Current Liabilities',
+    'Invested Capital'
 ]
 
 # 4th acquiring information from .quarterly_financials #
@@ -46,7 +47,7 @@ info_attribute_list_buffer = []
 balancesheet_list_buffer = []
 financials_list_buffer = []
 for i in range(len(df)):
-    print(i, " ",df['ticker'][i])
+    print(i, "/", len(df)-1 ,df['ticker'][i])
     yfticker = yf.Ticker(df['ticker'][i])
 
     # 2nd acquiring information from .info #
