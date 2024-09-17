@@ -20,10 +20,10 @@ marketcap = st.sidebar.number_input(
 
 
 sectortoexclude = st.sidebar.multiselect(
-    "Select sector to exclude", df['sector'].unique() , default=['Utilities','Energy','Financial Services','Real Estate']
+    "Select sector to exclude", df['sector'].unique() , default=['Financial Services']
 )
 industrytoexclude = st.sidebar.multiselect(
-    "Select industry to exclude", df['industry'].unique() , default= ['Engineering & Construction']
+    "Select industry to exclude", df['industry'].unique()
 )
 earningrepresentative = st.sidebar.selectbox(
     "Do you prefer EBIT or Operating Income to represent earning?",
