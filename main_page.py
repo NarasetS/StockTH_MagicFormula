@@ -15,5 +15,5 @@ st.markdown(
 ''':rainbow[You can explore page 'MF' and play with all available options (as steep as my knowledge reach so far) and try to rank stocks (Thailand) based on the principles generally provided by the book]''')
 
 st.markdown(
-    'Update notes: as of 2024-8-20 >> I put percentage of current price different from 52 week high and low as it might help on positioning an entry point'
+    'Update notes: as of 2024-9-17 >> I apply "Invested Capital" for a Return on Capital in the magic formula '
 )
