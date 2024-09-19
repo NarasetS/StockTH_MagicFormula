@@ -20,7 +20,7 @@ marketcap = st.sidebar.number_input(
 
 
 sectortoexclude = st.sidebar.multiselect(
-    "Select sector to exclude", df['sector'].unique() , default=['Financial Services']
+    "Select sector to exclude", df['sector'].unique() , default=['Financial Services','Utilities']
 )
 industrytoexclude = st.sidebar.multiselect(
     "Select industry to exclude", df['industry'].unique()
@@ -29,7 +29,7 @@ earningrepresentative = st.sidebar.selectbox(
     "Do you prefer EBIT or Operating Income to represent earning?",
     ("Operating Income","EBIT"),
 )
-numstocks = st.slider('Number of top ranking stocks', 0, len(df), 50)
+numstocks = st.slider('Number of top ranking stocks', 0, len(df), 30)
 st.markdown("Price update : " + str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
 
