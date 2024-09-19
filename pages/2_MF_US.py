@@ -10,7 +10,7 @@ df = pd.read_csv('data_stock_us.csv')
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
 market = st.sidebar.number_input(
-    "Enterprise Value in Million USD", value=100, placeholder="Type a number..."
+    "Enterprise Value in Million USD", value=50, placeholder="Type a number..."
 )
 
 sectortoexclude = st.sidebar.multiselect(

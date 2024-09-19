@@ -2,7 +2,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from datetime import date
-
+from lib import functions
 
 ## To acquire stock list in S&P500 ###
 ex1 = pd.read_csv('update_data/stock_info_s&p500.csv')
@@ -10,6 +10,7 @@ df = pd.DataFrame(ex1['Symbol'].astype('str'))
 df = df.rename(columns={'Symbol' : 'ticker'})
 df = df.drop_duplicates()
 df = df.reset_index(drop=True)
+# df = df[:30]
 
 # 1st pulling date for this data #
 df['date_pulling'] = date.today()
@@ -43,6 +44,8 @@ financials_list = [
 info_attribute_list_buffer = []
 balancesheet_list_buffer = []
 financials_list_buffer = []
+normalised_OI_index_list_buffer = []
+average_MF_ROC_list_buffer = []
 for i in range(len(df)):
     print(i, "/", len(df)-1 , df['ticker'][i])
     yfticker = yf.Ticker(df['ticker'][i])
@@ -78,10 +81,32 @@ for i in range(len(df)):
         financials_list_buffer_r.append(None)
     financials_list_buffer.append(financials_list_buffer_r)
 
+    ### get normalised_OI_index_list_buffer ####
+    normalised_OI_index_list_r = []
+    try:
+        beta , numofyear = functions.yfinance_normalised_OI_index(df['ticker'][i],'Operating Income')
+        normalised_OI_index_list_r.append(beta)
+        normalised_OI_index_list_r.append(numofyear)
+    except:
+        normalised_OI_index_list_r.append(None)
+        normalised_OI_index_list_r.append(None)       
+    normalised_OI_index_list_buffer.append(normalised_OI_index_list_r)
+    
+    ### get average_MF_ROC_list_buffer ####
+    average_MF_ROC_list_r = []
+    try:
+        avg_mf_roc = functions.yfinance_average_ROI(df['ticker'][i],'Operating Income')
+        average_MF_ROC_list_r.append(avg_mf_roc)
+    except:
+        average_MF_ROC_list_r.append(None)
+    average_MF_ROC_list_buffer.append(average_MF_ROC_list_r)
+
 financials_list.append('ttm_latest')
 df = df.join(pd.DataFrame(info_attribute_list_buffer, columns=info_attribute_list))
 df = df.join(pd.DataFrame(balancesheet_list_buffer, columns=balancesheet_list))
 df = df.join(pd.DataFrame(financials_list_buffer, columns=financials_list))
+df = df.join(pd.DataFrame(normalised_OI_index_list_buffer, columns=['beta_earnings','numofyear']))
+df = df.join(pd.DataFrame(average_MF_ROC_list_buffer, columns=['avg_MF_ROC']))
 
 ########### Calculate % diff from 52 week high and low
 try: 
