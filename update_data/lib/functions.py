@@ -7,16 +7,16 @@ from datetime import date
 #### Calculate ROIC #####
 def yfinance_average_ROI(ticker,property) :
     try:
-        investedcapital = yf.Ticker(ticker).balance_sheet.dropna(axis = 1, how = 'all')
-        investedcapital = investedcapital.T
-        investedcapital = investedcapital['Invested Capital']
+        netfixedcapital = yf.Ticker(ticker).balance_sheet.dropna(axis = 1, how = 'all')
+        netfixedcapital = netfixedcapital.T
+        netfixedcapital = netfixedcapital['Working Capital'] + netfixedcapital['Total Non Current Assets']
 
         earninngs = yf.Ticker(ticker).financials.dropna(axis = 1, how = 'all')
         earninngs = earninngs.T
         earninngs = earninngs[property]
 
         data = pd.DataFrame()
-        data['Invested Capital'] = investedcapital
+        data['Invested Capital'] = netfixedcapital
         data[property] = earninngs
         data = data.dropna()
         data['avg_MF_ROC'] = data[property]/data['Invested Capital']

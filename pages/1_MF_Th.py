@@ -35,7 +35,7 @@ st.markdown("Price update : " + str(df['date_pulling'][0]))
 ################## Calculation Part ###################################################
 # df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabilities'])
 df['MF_EY'] = df[earningrepresentative]/df['enterpriseValue']
-df['MF_ROC'] = df[earningrepresentative]/(df['Working Capital']+df['Total Non Current Assets'])
+df['MF_ROC'] = df[earningrepresentative]/(df['Working Capital'] + df['Total Non Current Assets'])
 
 
 df = df.loc[df['market'] == market]
