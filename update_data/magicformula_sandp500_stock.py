@@ -19,19 +19,17 @@ df['date_pulling'] = date.today()
 info_attribute_list = [
     'industry',
     'sector',
+    'marketCap',
     'enterpriseValue',
+    'currentPrice',
     'totalCashPerShare',
     'profitMargins',
     'trailingPE',
-    'currentPrice',
-    'fiftyTwoWeekLow',
-    'fiftyTwoWeekHigh'
 ]
 # 3rd acquiring information from .quarterly_balance_sheet #
 balancesheet_list = [
-    'Total Assets',
-    'Current Liabilities',
-    'Invested Capital'
+    'Total Non Current Assets',
+    'Working Capital'
 ]
 
 # 4th acquiring information from .quarterly_financials #
@@ -108,23 +106,19 @@ df = df.join(pd.DataFrame(financials_list_buffer, columns=financials_list))
 df = df.join(pd.DataFrame(normalised_OI_index_list_buffer, columns=['beta_earnings','numofyear']))
 df = df.join(pd.DataFrame(average_MF_ROC_list_buffer, columns=['avg_MF_ROC']))
 
-########### Calculate % diff from 52 week high and low
-try: 
-    df['percento52weekhigh'] = np.round(((df['currentPrice'] - df['fiftyTwoWeekHigh']) * 100 / df['currentPrice']),2)
-except:
-    None
-try: 
-    df['percento52weeklow'] = np.round(((df['currentPrice'] - df['fiftyTwoWeekLow']) * 100 / df['currentPrice']),2)
-except:
-    None
-########### Calculate % diff from 52 week high and low
-
 #### Drop NAN #############
 df = df.dropna()
 ##### Drop where marketcap and EBIT < 0#############
-df = df.loc[df['enterpriseValue'] >0]
+df = df.loc[df['marketCap'] >0]
 df = df.loc[df['EBIT'] >0]
 df = df.loc[df['Operating Income'] >0]
+
+sectortoexclude =['Financial Services','Utilities','Energy']
+for i in sectortoexclude:
+    try:
+        df = df.loc[df['sector'] != i]
+    except:
+        None
 df = df.reset_index(drop=True)
 
 df.to_csv('data_stock_s&p500.csv',index= False)
