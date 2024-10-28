@@ -26,7 +26,6 @@ earningrepresentative = st.sidebar.selectbox(
 )
 numstocks = st.slider('Number of top ranking stocks', 0, len(df), 30)
 st.markdown("Price update >> "+str(df['date_pulling'][0]))
-
 ################## sidebar ###########################################################
 
 ################## Calculation Part ###################################################
