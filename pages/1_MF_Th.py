@@ -13,14 +13,12 @@ market = st.sidebar.selectbox(
     "Select marketsize of the stocks", df['market'].unique()
 )
 
-
 marketcap = st.sidebar.number_input(
-    "Enterprise Value in Million THB", value=0 , placeholder= "Type a number..."
+    "marketCap in Million THB", value=0 , placeholder= "Type a number..."
 )
 
-
 sectortoexclude = st.sidebar.multiselect(
-    "Select sector to exclude", df['sector'].unique() , default=['Financial Services','Utilities']
+    "Select sector to exclude", df['sector'].unique()
 )
 industrytoexclude = st.sidebar.multiselect(
     "Select industry to exclude", df['industry'].unique()
@@ -37,11 +35,11 @@ st.markdown("Price update : " + str(df['date_pulling'][0]))
 ################## Calculation Part ###################################################
 # df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabilities'])
 df['MF_EY'] = df[earningrepresentative]/df['enterpriseValue']
-df['MF_ROC'] = df[earningrepresentative]/df['Invested Capital']
+df['MF_ROC'] = df[earningrepresentative]/(df['Working Capital'] + df['Total Non Current Assets'])
 
 
 df = df.loc[df['market'] == market]
-df = df.loc[df['enterpriseValue'] >= (marketcap*(1000000))]
+df = df.loc[df['marketCap'] >= (marketcap*(1000000))]
 for i in sectortoexclude:
     try:
         df = df.loc[df['sector'] != i]
@@ -62,14 +60,18 @@ df = df.reset_index(drop=True)
 df = df[:numstocks]
 
 columns_todrop = [
-    'Total Assets',
-    'enterpriseValue',
-    'Current Liabilities',
+    'Total Non Current Assets',
+    'marketCap',
+    'Working Capital',
     'Operating Income',
+    'enterpriseValue',
     'EBIT',
-    'fiftyTwoWeekLow',
-    'fiftyTwoWeekHigh',
-    'Invested Capital'
+    'date_pulling',
+    'market',
+    'numofyear',
+    'ttm_latest',
+    'Ranking_MF_ROC',
+    'Ranking_MF_EY'
 ]
 for i in range(len(columns_todrop)):
     try:
