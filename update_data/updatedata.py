@@ -5,6 +5,7 @@
 
 import pandas as pd
 from lib import etl
+from lib import kmeanclustering
 
 ## Firstly, let me build up a list of tickers ####
 list_stock_th = pd.read_excel('update_data/stock_info_th.xlsx', sheet_name='listedCompanies_th_TH',skiprows=1)
@@ -38,4 +39,10 @@ df_list_stock = df_list_stock.reset_index(drop=True)
 print(df_list_stock)
 
 etl.etl(df_list_stock,'s&p500')
+# kmeanclustering.kmeanclustering('s&p500')
+etl.etl(df_list_stock,'SET')
+kmeanclustering.kmeanclustering('SET')
+etl.etl(df_list_stock,'us')
+kmeanclustering.kmeanclustering('us')
+
 

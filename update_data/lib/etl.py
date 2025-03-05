@@ -43,7 +43,7 @@ def etl(df_list_stock,stockmarket):
     ]
 
     # 5th acquiring information from .quarterly_cash_flow #
-    ttm_c = 2
+    ttm_c = 4
     cashflow_list = [
         'Free Cash Flow'
     ]
@@ -98,7 +98,7 @@ def etl(df_list_stock,stockmarket):
         cashflow_list_buffer_r = []
         for j in range(len(cashflow_list)):
             try:
-                cashflow_list_buffer_r.append(np.array([yfticker.quarterly_cashflow.loc[yfticker.quarterly_cashflow.index == cashflow_list[j]].values[0][i] for i in range(ttm_c)]).mean())
+                cashflow_list_buffer_r.append(np.array([yfticker.quarterly_cashflow.loc[yfticker.quarterly_cashflow.index == cashflow_list[j]].values[0][i] for i in range(ttm_c)]).sum())
             except:
                 cashflow_list_buffer_r.append(None)
 
