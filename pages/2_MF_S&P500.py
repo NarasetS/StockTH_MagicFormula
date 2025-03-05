@@ -10,7 +10,7 @@ df = pd.read_csv('data_stock_s&p500.csv')
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
 market = st.sidebar.number_input(
-    "marketCap Value in Million USD", value=0, placeholder="Type a number..."
+    "Enterprise Value in Million USD", value=0, placeholder="Type a number..."
 )
 
 sectortoexclude = st.sidebar.multiselect(
@@ -19,18 +19,10 @@ sectortoexclude = st.sidebar.multiselect(
 industrytoexclude = st.sidebar.multiselect(
     "Select industry to exclude", df['industry'].unique() 
 )
-earningrepresentative = st.sidebar.selectbox(
-    "Do you prefer EBIT or Operating Income to represent earning?",
-    ("Operating Income","EBIT"),
-)
 numstocks = st.slider('Number of top ranking stocks', 0, len(df), 30)
 st.markdown("Price update >> "+str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
 
-################## Calculation Part ###################################################
-# df['MF_ROC'] = df[earningrepresentative]/(df['Total Assets'] - df['Current Liabilities'])
-df['MF_EY'] = df[earningrepresentative]/df['enterpriseValue']
-df['MF_ROC'] = df[earningrepresentative]/(df['Working Capital']+df['Total Non Current Assets'])
 
 df = df.loc[df['marketCap'] >= (market*(1000000))]
 for i in sectortoexclude:
