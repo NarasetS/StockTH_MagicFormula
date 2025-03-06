@@ -11,11 +11,11 @@ sys.path.append(os.getcwd()+"\\update_data\\self_lib")
 sys.path.append(os.getcwd()+"/update_data/self_lib")
 import rankingclustering
 
-df = pd.read_csv('data_stock_s&p500.csv')
+df = pd.read_csv('data_stock_SET.csv')
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
 market = st.sidebar.number_input(
-    "Enterprise Value in Million USD", value=0, placeholder="Type a number..."
+    "Enterprise Value in Million THB", value=0, placeholder="Type a number..."
 )
 
 sectortoexclude = st.sidebar.multiselect(
@@ -112,4 +112,3 @@ st.markdown("You can then modify the result by sorting the result regarding your
 st.markdown("It's a must to verify this ranking by reviewing individual stock and choosing to invest ""by yourself"" ")
 
 ################# main ###########################################################
-
