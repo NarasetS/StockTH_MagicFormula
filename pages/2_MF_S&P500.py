@@ -27,7 +27,6 @@ numstocks = st.slider('Number of top ranking stocks', 0, len(df), 30)
 st.markdown("Price update >> "+str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
 
-
 df = df.loc[df['enterpriseValue'] >= (market*(1000000))]
 for i in sectortoexclude:
     try:
@@ -44,25 +43,21 @@ df = df.reset_index(drop=True)
 df = rankingclustering.rankingclustering(df,'s&p500')
 df = df[:numstocks]
 
-# columns_todrop = [
-#     'Total Non Current Assets',
-#     'marketCap',
-#     'Working Capital',
-#     'Operating Income',
-#     'enterpriseValue',
-#     'EBIT',
-#     'date_pulling',
-#     'market',
-#     'numofyear',
-#     'ttm_latest',
-#     'Ranking_MF_ROC',
-#     'Ranking_MF_EY'
-# ]
-# for i in range(len(columns_todrop)):
-#     try:
-#        df = df.drop(columns = columns_todrop[i])
-#     except:
-#         None
+columns_todrop = [
+    'date_pulling',
+    'totalCashPerShare',
+    'currentRatio',
+    'Total Non Current Assets',
+    'Working Capital',
+    'Operating Income',
+    'ttm_latest',
+    'Free Cash Flow,'
+]
+for i in range(len(columns_todrop)):
+    try:
+       df = df.drop(columns = columns_todrop[i])
+    except:
+        None
 
 df_output = df.copy()
 def func_sectortoshow(dataf,listsector):
