@@ -3,10 +3,13 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 from datetime import date
-
+import sys
+import os
+# print(os.getcwd()+"\\update_data\\self_lib")
+sys.path.append(os.getcwd()+"\\update_data\\self_lib")
+import rankingclustering
 
 df = pd.read_csv('data_stock_s&p500.csv')
-
 ################## sidebar ###########################################################
 st.sidebar.markdown("Options")
 market = st.sidebar.number_input(
@@ -24,7 +27,7 @@ st.markdown("Price update >> "+str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
 
 
-df = df.loc[df['marketCap'] >= (market*(1000000))]
+df = df.loc[df['enterpriseValue'] >= (market*(1000000))]
 for i in sectortoexclude:
     try:
         df = df.loc[df['sector'] != i]
@@ -37,32 +40,29 @@ for i in industrytoexclude:
         None
 df = df.reset_index(drop=True)
 
-df['Ranking_MF_ROC'] = df['MF_ROC'].rank()
-df['Ranking_MF_EY'] = df['MF_EY'].rank()
-df['Ranking_MF'] = df['Ranking_MF_ROC'] + df['Ranking_MF_EY']
-df = df.sort_values(by=['Ranking_MF'],ascending=False)
-df = df.reset_index(drop=True)
+df = rankingclustering.rankingclustering(df,'s&p500')
 df = df[:numstocks]
 
-columns_todrop = [
-    'Total Non Current Assets',
-    'marketCap',
-    'Working Capital',
-    'Operating Income',
-    'enterpriseValue',
-    'EBIT',
-    'date_pulling',
-    'market',
-    'numofyear',
-    'ttm_latest',
-    'Ranking_MF_ROC',
-    'Ranking_MF_EY'
-]
-for i in range(len(columns_todrop)):
-    try:
-       df = df.drop(columns = columns_todrop[i])
-    except:
-        None
+# columns_todrop = [
+#     'Total Non Current Assets',
+#     'marketCap',
+#     'Working Capital',
+#     'Operating Income',
+#     'enterpriseValue',
+#     'EBIT',
+#     'date_pulling',
+#     'market',
+#     'numofyear',
+#     'ttm_latest',
+#     'Ranking_MF_ROC',
+#     'Ranking_MF_EY'
+# ]
+# for i in range(len(columns_todrop)):
+#     try:
+#        df = df.drop(columns = columns_todrop[i])
+#     except:
+#         None
+
 df_output = df.copy()
 def func_sectortoshow(dataf,listsector):
     dataf = dataf.loc[dataf['sector'].isin(listsector)]
@@ -82,5 +82,5 @@ st.write(df_output)
 st.markdown("You can then modify the result by sorting the result regarding your own interested attributes")
 st.markdown("It's a must to verify this ranking by reviewing individual stock and choosing to invest ""by yourself"" ")
 
-################## main ###########################################################
+################# main ###########################################################
 

@@ -5,6 +5,9 @@ from datetime import date
 import datetime
 import calendar
 
+def __init__() :
+    pass
+
 def etl(df_list_stock,stockmarket):
     
     df_list_stock = df_list_stock.loc[df_list_stock['market'] == stockmarket]

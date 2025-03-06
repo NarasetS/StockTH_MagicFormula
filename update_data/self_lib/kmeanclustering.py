@@ -6,6 +6,8 @@ import numpy as np
 from sklearn.cluster import KMeans
 from sklearn.preprocessing import StandardScaler
 
+def __init__() :
+    pass
 
 def kmeanclustering(stockmarket):
     filename = 'data_stock_'+stockmarket+'.csv'
