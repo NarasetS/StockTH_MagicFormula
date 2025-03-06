@@ -7,6 +7,7 @@ import sys
 import os
 # print(os.getcwd()+"\\update_data\\self_lib")
 sys.path.append(os.getcwd()+"\\update_data\\self_lib")
+sys.path.append(os.getcwd()+"/update_data/self_lib")
 import rankingclustering
 
 df = pd.read_csv('data_stock_s&p500.csv')
@@ -66,7 +67,6 @@ df = df[:numstocks]
 df_output = df.copy()
 def func_sectortoshow(dataf,listsector):
     dataf = dataf.loc[dataf['sector'].isin(listsector)]
-    dataf = dataf.reset_index(drop=True)
     return dataf
 
 ################## Calculation Part ###################################################
