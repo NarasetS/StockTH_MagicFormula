@@ -97,7 +97,7 @@ scatterx = st.selectbox(
     "X Axis",options = df_output.columns, index = len(df_output.columns) - 2  
 )
 scattery = st.selectbox(
-    "Y Axis",options = df_output.columns, index = len(df_output.columns) - 6  
+    "Y Axis",options = df_output.columns, index = len(df_output.columns) - 6 
 )
 st.scatter_chart(
     df_output,

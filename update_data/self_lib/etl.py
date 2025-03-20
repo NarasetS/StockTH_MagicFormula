@@ -31,7 +31,8 @@ def etl(df_list_stock,stockmarket):
         'currentRatio',
         # 'trailingPegRatio',
         # 'currentPrice',
-        'trailingEps'
+        'trailingEps',
+        'dividendRate'
     ]
     # 3rd acquiring information from .quarterly_balance_sheet #
     balancesheet_list = [
@@ -152,6 +153,7 @@ def etl(df_list_stock,stockmarket):
     df_list_stock = df_list_stock.join(pd.DataFrame(pricerelated_list_bugger, columns=['beta','price_current','price_past']))
 
     #### Drop NAN #############
+    df_list_stock['dividendRate'] = df_list_stock['dividendRate'].fillna(0)
     df_list_stock = df_list_stock.dropna()
     ## we could notice that bakning/financial stocks would be filtered out since there accounting method is not the same as others 
 

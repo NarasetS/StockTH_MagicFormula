@@ -20,9 +20,9 @@ def rankingclustering(df,stockmarket):
     data_features = data[
         [
         'MF_Rank',
-        'PriceIndex_6m',
-        #  'FCF_Yield',
-        #  'percenFCFpersharetoprice'
+        # 'PriceIndex_6m',
+         'FCF_Yield',
+         'percenFCFpersharetoprice'
         ]
     ]
     # Feature scaling
