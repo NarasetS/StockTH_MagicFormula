@@ -3,7 +3,6 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-import plotly.figure_factory as ff
 from datetime import date
 import sys
 import os
