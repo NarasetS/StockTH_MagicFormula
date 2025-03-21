@@ -92,9 +92,10 @@ sortby = st.selectbox(
 df_output = df_output.sort_values(by = sortby,ascending = False)
 
 
-st.header("Scatter Plot Clustered using Kmeans of PriceIndex_6m and MF_Rank")
+st.header("Scatter Plot Clustered using Kmeans with features MF_Ranking, FCF_Yield and percentage_FCFtosharedprice")
+
 scatterx = st.selectbox(
-    "X Axis",options = df_output.columns, index = len(df_output.columns) - 2  
+    "X Axis",options = df_output.columns, index = len(df_output.columns) - 1  
 )
 scattery = st.selectbox(
     "Y Axis",options = df_output.columns, index = len(df_output.columns) - 6  

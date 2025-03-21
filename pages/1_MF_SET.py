@@ -3,6 +3,7 @@ import yfinance as yf
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import plotly.figure_factory as ff
 from datetime import date
 import sys
 import os
@@ -28,6 +29,8 @@ industrytoexclude = st.sidebar.multiselect(
 st.markdown("Price update >> "+str(df['date_pulling'][0]))
 ################## sidebar ###########################################################
 
+
+################## Calculation Part ###################################################
 df = df.loc[df['enterpriseValue'] >= (market*(1000000))]
 for i in sectortoexclude:
     try:
@@ -60,6 +63,7 @@ for i in range(len(columns_todrop)):
         None
 
 df_output = df.copy()
+##########################################################################################
 
 def func_sectortoshow(dataf,listsector):
     dataf = dataf.loc[dataf['sector'].isin(listsector)]
@@ -92,9 +96,10 @@ sortby = st.selectbox(
 df_output = df_output.sort_values(by = sortby,ascending = False)
 
 
-st.header("Scatter Plot Clustered using Kmeans of PriceIndex_6m and MF_Rank")
+st.header("Scatter Plot Clustered using Kmeans with features MF_Ranking, FCF_Yield and percentage_FCFtosharedprice")
+
 scatterx = st.selectbox(
-    "X Axis",options = df_output.columns, index = len(df_output.columns) - 2  
+    "X Axis",options = df_output.columns, index = len(df_output.columns) - 1  
 )
 scattery = st.selectbox(
     "Y Axis",options = df_output.columns, index = len(df_output.columns) - 6 
