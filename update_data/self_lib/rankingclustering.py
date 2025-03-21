@@ -22,7 +22,7 @@ def rankingclustering(df,stockmarket):
         'MF_Rank',
         # 'PriceIndex_6m',
          'FCF_Yield',
-         'percenFCFpersharetoprice'
+        #  'percenFCFpersharetoprice'
         ]
     ]
     # Feature scaling

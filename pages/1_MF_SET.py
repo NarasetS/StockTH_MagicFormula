@@ -95,7 +95,7 @@ sortby = st.selectbox(
 df_output = df_output.sort_values(by = sortby,ascending = False)
 
 
-st.header("Scatter Plot Clustered using Kmeans with features MF_Ranking, FCF_Yield and percentage_FCFtosharedprice")
+st.header("Scatter Plot Clustered using Kmeans with features MF_Ranking and FCF_Yield")
 
 scatterx = st.selectbox(
     "X Axis",options = df_output.columns, index = len(df_output.columns) - 1  
