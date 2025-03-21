@@ -9,7 +9,7 @@ import os
 # print(os.getcwd()+"\\update_data\\self_lib")
 sys.path.append(os.getcwd()+"\\update_data\\self_lib")
 sys.path.append(os.getcwd()+"/update_data/self_lib")
-import rankingclustering
+# import rankingclustering
 
 df = pd.read_csv('data_stock_s&p500.csv')
 ################## sidebar ###########################################################
@@ -41,7 +41,7 @@ for i in industrytoexclude:
         None
 df = df.reset_index(drop=True)
 
-df = rankingclustering.rankingclustering(df,'s&p500')
+# df = rankingclustering.rankingclustering(df,'s&p500')
 
 columns_todrop = [
     'date_pulling',
