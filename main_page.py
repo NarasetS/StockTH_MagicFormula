@@ -10,10 +10,3 @@ st.markdown("Disclaimer : Here, I mean no suggestion for an investment nor credi
 st.markdown("I just happened to read the book and got extremely inspired.")
 st.markdown("And, since, I've been practicing my Python programming skill and web dev.")
 st.markdown("Therefore, this site is just me mixing my interests and perks, then put it to work.")
-
-st.markdown(
-''':rainbow[You can explore page 'MF' and play with all available options (as steep as my knowledge reach so far) and try to rank stocks (Thailand) based on the principles generally provided by the book]''')
-
-st.markdown(
-    'Update notes: as of 2024-9-28 >> I apply "Working Capital + Total Non Current Assets" for a Return on Capital in the magic formula'
-)
