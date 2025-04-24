@@ -38,10 +38,10 @@ df_list_stock = df_list_stock.reset_index(drop=True)
 
 print(df_list_stock)
 
-# self_lib.etl.etl(df_list_stock,'s&p500')
-# self_lib.kmeanclustering.kmeanclustering('s&p500')
-# self_lib.etl.etl(df_list_stock,'SET')
-# self_lib.kmeanclustering.kmeanclustering('SET')
+self_lib.etl.etl(df_list_stock,'s&p500')
+self_lib.kmeanclustering.kmeanclustering('s&p500')
+self_lib.etl.etl(df_list_stock,'SET')
+self_lib.kmeanclustering.kmeanclustering('SET')
 self_lib.etl.etl(df_list_stock,'us')
 self_lib.kmeanclustering.kmeanclustering('us')
 
