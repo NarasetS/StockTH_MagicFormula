@@ -19,6 +19,7 @@ df_list_stock_sp500 = pd.DataFrame(list_stock_sp500['Symbol'].astype('str'))
 df_list_stock_sp500 = df_list_stock_sp500.rename(columns={'Symbol' : 'ticker'})
 df_list_stock_sp500 = df_list_stock_sp500.drop_duplicates()
 df_list_stock_sp500['market'] = 's&p500'
+# df_list_stock_sp500 = df_list_stock_sp500[:10]
 
 list_stock_us1 = pd.read_csv('update_data/stock_info_us_1.csv')
 list_stock_us2 = pd.read_csv('update_data/stock_info_us_2.csv')
